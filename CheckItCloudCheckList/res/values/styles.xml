@@ -1,0 +1,71 @@
+<resources>
+
+    <style name="Theme_Bhavyanshu" parent="@style/Theme.Sherlock.Light">
+        <item name="actionBarItemBackground">@drawable/selectable_background</item>
+        <item name="popupMenuStyle">@style/PopupMenu.Bhavyanshu</item>
+        <item name="dropDownListViewStyle">@style/DropDownListView.Bhavyanshu</item>
+        <item name="actionBarTabStyle">@style/ActionBarTabStyle.Bhavyanshu</item>
+        <item name="actionDropDownStyle">@style/DropDownNav.Bhavyanshu</item>
+        <item name="actionBarStyle">@style/ActionBar.Solid.Bhavyanshu</item>
+        <item name="actionModeBackground">@drawable/cab_background_top</item>
+        <item name="actionModeSplitBackground">@drawable/cab_background_bottom</item>
+        <item name="actionModeCloseButtonStyle">@style/ActionButton.CloseMode.Bhavyanshu</item>
+    </style>
+
+        <style name="Theme_Bhavyanshu_Dark" parent="@style/Theme.Sherlock">
+        <item name="actionBarItemBackground">@drawable/selectable_background</item>
+        <item name="popupMenuStyle">@style/PopupMenu.Bhavyanshu</item>
+        <item name="dropDownListViewStyle">@style/DropDownListView.Bhavyanshu</item>
+        <item name="actionBarTabStyle">@style/ActionBarTabStyle.Bhavyanshu</item>
+        <item name="actionDropDownStyle">@style/DropDownNav.Bhavyanshu</item>
+        <item name="actionBarStyle">@style/ActionBar.Solid.Bhavyanshu</item>
+        <item name="actionModeBackground">@drawable/cab_background_top</item>
+        <item name="actionModeSplitBackground">@drawable/cab_background_bottom</item>
+        <item name="actionModeCloseButtonStyle">@style/ActionButton.CloseMode.Bhavyanshu</item>
+    </style>
+    
+    <style name="ActionBar.Solid.Bhavyanshu" parent="@style/Widget.Sherlock.Light.ActionBar.Solid">
+        <item name="background">@drawable/ab_solid</item>
+        <item name="backgroundStacked">@drawable/ab_stacked_solid</item>
+        <item name="backgroundSplit">@drawable/ab_bottom_solid</item>
+        <item name="progressBarStyle">@style/ProgressBar.Bhavyanshu</item>
+    </style>
+
+    <style name="ActionBar.Transparent.Bhavyanshu" parent="@style/Widget.Sherlock.Light.ActionBar">
+        <item name="background">@drawable/ab_transparent</item>
+        <item name="progressBarStyle">@style/ProgressBar.Bhavyanshu</item>
+    </style>
+	
+    <style name="PopupMenu.Bhavyanshu" parent="@style/Widget.Sherlock.Light.ListPopupWindow">	
+        <item name="android:popupBackground">@drawable/menu_dropdown_panel</item>	
+    </style>
+	
+    <style name="DropDownListView.Bhavyanshu" parent="@style/Widget.Sherlock.Light.ListView.DropDown">
+        <item name="android:listSelector">@drawable/selectable_background</item>
+    </style>
+
+    <style name="ActionBarTabStyle.Bhavyanshu" parent="@style/Widget.Sherlock.Light.ActionBar.TabView">
+        <item name="android:background">@drawable/tab_indicator_ab</item>
+    </style>
+	
+    <style name="DropDownNav.Bhavyanshu" parent="@style/Widget.Sherlock.Light.Spinner.DropDown.ActionBar">
+        <item name="android:background">@drawable/spinner_background_ab</item>
+        <item name="android:popupBackground">@drawable/menu_dropdown_panel</item>
+        <item name="android:dropDownSelector">@drawable/selectable_background</item>
+    </style>
+    
+    <style name="ProgressBar.Bhavyanshu" parent="@style/Widget.Sherlock.Light.ProgressBar.Horizontal">
+        <item name="android:progressDrawable">@drawable/progress_horizontal</item>
+    </style>
+    
+    <style name="ActionButton.CloseMode.Bhavyanshu" parent="@style/Widget.Sherlock.Light.ActionButton.CloseMode">
+        <item name="android:background">@drawable/btn_cab_done</item>
+    </style>
+    
+    <!-- this style is only referenced in a Light.DarkActionBar based theme -->
+    <style name="Theme.Bhavyanshu.Widget" parent="@style/Theme.Sherlock">
+        <item name="popupMenuStyle">@style/PopupMenu.Bhavyanshu</item>
+        <item name="dropDownListViewStyle">@style/DropDownListView.Bhavyanshu</item>
+    </style>
+
+</resources>
