@@ -1,12 +1,17 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android" >
-    
-        <!-- Refresh -->
-    <item android:id="@+id/action_refresh"
-          android:icon="@drawable/ic_menu_refresh_holo_light"
-          android:title="@string/action_refresh"
-          android:showAsAction="ifRoom" />
-     
 
+    <!-- Speech -->
+    <item
+        android:id="@+id/action_speech"
+        android:icon="@drawable/ic_speech"
+        android:showAsAction="ifRoom"
+        android:title="@string/action_speech"/>
+    <!-- Refresh -->
+    <item
+        android:id="@+id/action_refresh"
+        android:icon="@drawable/ic_menu_refresh_holo_light"
+        android:showAsAction="ifRoom"
+        android:title="@string/action_refresh"/>
     <item
         android:id="@+id/action_settings"
         android:icon="@drawable/action_bar_icon_settings"
@@ -14,9 +19,14 @@
         android:showAsAction="ifRoom">
         <menu>
             <item
+                android:id="@+id/action_logout"
+                android:orderInCategory="100"
+                android:showAsAction="never"
+                android:title="@string/action_logout"/>
+           <!--  <item
                 android:id="@+id/action_switch_theme"
                 android:title="Theme">
-            </item>
+            </item>  -->
         </menu>
     </item>
 

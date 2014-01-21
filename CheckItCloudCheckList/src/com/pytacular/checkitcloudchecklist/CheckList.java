@@ -8,10 +8,11 @@ import android.view.ViewGroup;
 import com.actionbarsherlock.app.ActionBar;
 import com.actionbarsherlock.app.SherlockFragment;
 import com.actionbarsherlock.app.ActionBar.Tab;
+import com.actionbarsherlock.app.SherlockFragmentActivity;
 import com.actionbarsherlock.app.SherlockListFragment;
 
 
-public class CheckList extends SherlockFragment {
+public class CheckList extends SherlockFragmentActivity {
 		 
 	
 	}
