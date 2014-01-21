@@ -15,11 +15,12 @@ You can use this app for free on daily basis. It is an advanced checklist androi
 
 ##Try it out
 
-<img src="http://bhavyanshu.me/assets/imags/google_play_store_icon.png" alt="Play Store" description="Get it from play store" />
+<a href="https://play.google.com/store/apps/details?id=com.pytacular.checkitcloudchecklist"><img src="http://bhavyanshu.me/assets/imags/google_play_store_icon.png" alt="Play Store" description="Get it from play store" /></a>
 
 ##Requirements
 
 * This will work on android 2.2 and above. Requires Internet Acess.
+* Tested on Android 2.3 & Android 4.4.2.
 
 ##License
 
