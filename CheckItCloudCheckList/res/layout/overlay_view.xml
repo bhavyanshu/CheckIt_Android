@@ -14,11 +14,15 @@
   See the License for the specific language governing permissions and
   limitations under the License.
 -->
-<selector xmlns:android="http://schemas.android.com/apk/res/android">
-    <item android:state_pressed="true"
-        android:drawable="@drawable/btn_cab_done_pressed" />
-    <item android:state_focused="true" android:state_enabled="true"
-        android:drawable="@drawable/btn_cab_done_focused" />
-    <item android:state_enabled="true"
-        android:drawable="@drawable/btn_cab_done_default" />
-</selector>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@null"
+        android:orientation="vertical"
+        android:id="@+id/overlayLayout">
+    <ImageView
+            android:id="@+id/imageView1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/overlay" />
+</LinearLayout>
