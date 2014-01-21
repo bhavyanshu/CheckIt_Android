@@ -1,4 +1,4 @@
-#CheckIt For Android
+#CheckIt Cloud CheckList For Android
 
 This is a official respository for "CheckIt Cloud CheckList" android application. All the development work is done in this repository only. 
 
@@ -13,29 +13,33 @@ You can use this app for free on daily basis. It is an advanced checklist androi
 * No need to store any data on your device. Space is precious. 
 * We take the headache of providing you enough cloud space for your daily use.
 
+##Try it out
+
+<img src="http://bhavyanshu.me/assets/imags/google_play_store_icon.png" alt="Play Store" description="Get it from play store" />
+
 ##Requirements
 
 * This will work on android 2.2 and above. Requires Internet Acess.
 
 ##License
 
-This application source code is licensed under Apache License V 2.0
+This application source code is licensed under Apache License Version 2.0.
 
-/*******************************************************************************
- * Copyright 2014 [Bhavyanshu Parasher](http://bhavyanshu.me)
- * 
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- * 
- *   http://www.apache.org/licenses/LICENSE-2.0
- * 
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- ******************************************************************************/
+
+ > Copyright 2014 [Bhavyanshu Parasher](http://bhavyanshu.me)
+  
+ > Licensed under the Apache License, Version 2.0 (the "License");
+  you may not use this file except in compliance with the License.
+  You may obtain a copy of the License at
+  
+ >   http://www.apache.org/licenses/LICENSE-2.0
+  
+ > Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+
 
 ## Want to report bugs?
 
