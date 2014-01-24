@@ -23,6 +23,8 @@
     <ImageView
             android:id="@+id/imageView1"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/overlay" />
+            android:layout_height="fill_parent"
+            android:background="#7039B7CD" 
+            android:src="@drawable/overlay1" />
+    <!-- #8000CDCD 0EBFE9 00C5CD 39B7CD -->
 </LinearLayout>
