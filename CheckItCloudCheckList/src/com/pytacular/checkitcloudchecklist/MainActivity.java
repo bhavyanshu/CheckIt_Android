@@ -29,6 +29,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Paint;
+import android.graphics.Typeface;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
@@ -92,22 +93,16 @@ public class MainActivity extends SherlockActivity implements
 			settings.edit().putBoolean("firstlaunch", false).commit();
 		}
 
-		if (savedInstanceState != null) {
-			int index = savedInstanceState.getInt("selected_tab_index", 0);
-			getSupportActionBar().setSelectedNavigationItem(index);
-		}
-
 		if (InternetStatus.getInstance(this).isOnline(this)) {
 			Log.i("MainActivity : ", "Internet connection detected");
 		} else {
 			Log.i("MainActivity : ", "Internet connection not detected");
 		}
-
 		/**
 		 * Below is the complete parse usage init(context, APP ID, Client ID).
 		 * Add your APP ID and CLient ID given by parse.
 		 */
-		Parse.initialize(this, "",""); // add APP ID & CLIENT ID given by parse respectively.
+		Parse.initialize(this, "",""); 
 		PushService.setDefaultPushCallback(this, MainActivity.class);
 		ParseAnalytics.trackAppOpened(getIntent());
 		ParseObject.registerSubclass(Task.class);
@@ -128,12 +123,6 @@ public class MainActivity extends SherlockActivity implements
 		updateData();
 	}
 
-	@Override
-	protected void onSaveInstanceState(Bundle outState) {
-		super.onSaveInstanceState(outState);
-		int index = getSupportActionBar().getSelectedNavigationIndex();
-		outState.putInt("selected_tab_index", index);
-	}
 	
 	@TargetApi(Build.VERSION_CODES.HONEYCOMB)
 	private void infoBox(){
@@ -255,24 +244,6 @@ public class MainActivity extends SherlockActivity implements
 			return true;
 		}
 
-	}
-
-	/**
-	 * Creating tabs
-	 */
-	private void addTabs() {
-		/*
-		 * ActionBar bar = getSupportActionBar();
-		 * 
-		 * 
-		 * String defaultTab = getResources().getString(R.string.check_list);
-		 * ActionBar.Tab currentTab = bar.newTab();
-		 * currentTab.setText(defaultTab); currentTab.setTabListener(new
-		 * TabListener(this, defaultTab, CheckList.class));
-		 * bar.addTab(currentTab);
-		 * 
-		 * bar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
-		 */
 	}
 
 	/**
