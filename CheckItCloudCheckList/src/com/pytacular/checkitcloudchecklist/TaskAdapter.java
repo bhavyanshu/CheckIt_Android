@@ -19,6 +19,7 @@ import java.util.List;
 
 import android.content.Context;
 import android.graphics.Paint;
+import android.graphics.Typeface;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -44,15 +45,17 @@ public class TaskAdapter extends ArrayAdapter<Task> {
 		Task task = mTasks.get(position);
 		
 		TextView descriptionView = (TextView) convertView.findViewById(R.id.task_description);
-		
+		// Loading font from assets
+		Typeface tfIron=Typeface.createFromAsset(getContext().getAssets(), "fonts/comicsans.ttf");
+		// applying to the view
+		descriptionView.setTypeface(tfIron);
 		descriptionView.setText(task.getDescription());
 		
 		if(task.isCompleted()){
 			descriptionView.setPaintFlags(descriptionView.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
 		}else{
 			descriptionView.setPaintFlags(descriptionView.getPaintFlags() & (~Paint.STRIKE_THRU_TEXT_FLAG));
-		}
-		
+		}	
 		return convertView;
 	}
 
