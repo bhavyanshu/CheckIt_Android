@@ -16,8 +16,8 @@
 -->
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.pytacular.checkitcloudchecklist"
-    android:versionCode="1"
-    android:versionName="1.0" >
+    android:versionCode="2"
+    android:versionName="1.1" >
 
     <uses-sdk
         android:minSdkVersion="8"
@@ -64,6 +64,10 @@
             android:name="com.pytacular.checkitcloudchecklist.RegisterActivity"
             android:label="@string/app_name" >
         </activity>
+         <activity
+            android:name="com.pytacular.checkitcloudchecklist.PromoActivity"
+            android:label="@string/app_name" >
+        </activity>
 
         <service android:name="com.parse.PushService" />
 
@@ -83,5 +87,4 @@
             </intent-filter>
         </receiver>
     </application>
-
 </manifest>

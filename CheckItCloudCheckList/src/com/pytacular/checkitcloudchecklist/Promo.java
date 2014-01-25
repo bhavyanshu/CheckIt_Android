@@ -19,9 +19,9 @@ import com.parse.ParseClassName;
 import com.parse.ParseObject;
 import com.parse.ParseUser;
 
-@ParseClassName("Task")
-public class Task extends ParseObject{
-	public Task(){
+@ParseClassName("Promo")
+public class Promo extends ParseObject{
+	public Promo(){
 		
 	}
 	
@@ -37,19 +37,7 @@ public class Task extends ParseObject{
 		return getString("description");
 	}
 	
-	public String getCategory(){
-		return getString("Category");
-	}
-	
-	public void setDescription(String description){
-		put("description", description);
-	}
-
-	public void setCategory(String category){
-		put("Category", category);
-	}
-	
-	public void setUser(ParseUser currentUser) {
-		put("user", currentUser);
+	public String getURL(){
+		return getString("url");
 	}
 }

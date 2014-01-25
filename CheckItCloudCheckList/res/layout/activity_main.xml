@@ -54,8 +54,7 @@
     <ListView
         android:layout_below="@+id/rl1"
         android:id="@+id/task_list"
-        android:layout_marginTop="15dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
-
+    
 </RelativeLayout>

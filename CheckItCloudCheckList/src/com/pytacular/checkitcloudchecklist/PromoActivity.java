@@ -23,13 +23,9 @@ import android.app.AlertDialog;
 import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.ActivityNotFoundException;
-import android.content.ClipData;
-import android.content.ClipboardManager;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.SharedPreferences;
-import android.graphics.Paint;
-import android.graphics.Typeface;
+import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
@@ -42,11 +38,8 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
-import android.widget.AdapterView.OnItemLongClickListener;
-import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.ListView;
-import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -58,7 +51,6 @@ import com.actionbarsherlock.view.MenuItem;
 import com.actionbarsherlock.view.MenuItem.OnMenuItemClickListener;
 import com.parse.FindCallback;
 import com.parse.Parse;
-import com.parse.ParseACL;
 import com.parse.ParseAnalytics;
 import com.parse.ParseException;
 import com.parse.ParseObject;
@@ -67,59 +59,43 @@ import com.parse.ParseQuery.CachePolicy;
 import com.parse.ParseUser;
 import com.parse.PushService;
 
-public class MainActivity extends SherlockActivity implements
-		OnItemClickListener, OnItemLongClickListener {
+public class PromoActivity extends SherlockActivity implements
+		OnItemClickListener {
 
 	protected static final int RESULT_SPEECH = 1;
-	private EditText mTaskInput;
 	private ListView mListView;
-	private TaskAdapter mAdapter;
+	private PromoAdapter mAdapter;
 	ProgressDialog proDialog;
 	private SpeechRecognizer sr;
-	final String PREFS_NAME = "MyPrefsFile";
 	private final Handler handler = new Handler();
 
 	@SuppressWarnings("deprecation")
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_main);
-		SharedPreferences settings = getSharedPreferences(PREFS_NAME, 0);
-		if (settings.getBoolean("firstlaunch", true)) {
-			showOverLay();
-			// record the fact that the app has been started at least once
-			settings.edit().putBoolean("firstlaunch", false).commit();
-		}
-
+		setContentView(R.layout.layout_promo_main);
 		if (InternetStatus.getInstance(this).isOnline(this)) {
-			Log.i("MainActivity : ", "Internet connection detected");
+			//Do nothing
 		} else {
-			Log.i("MainActivity : ", "Internet connection not detected");
+			//Log.i("MainActivity : ", "Internet connection not detected");
+			//Display error to the user or ask user to login again?
 			Intent intent = new Intent(this, LoginActivity.class);
 			intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
 			startActivity(intent);
-		}
-		/**
-		 * Below is the complete parse usage init(context, APP ID, Client ID).
-		 * Add your APP ID and CLient ID given by parse.
-		 */
-		Parse.initialize(this, "", ""); 
-		PushService.setDefaultPushCallback(this, MainActivity.class);
+		} 
+		//PushService.setDefaultPushCallback(this, PromoActivity.class);
 		ParseAnalytics.trackAppOpened(getIntent());
-		ParseObject.registerSubclass(Task.class);
-
+		ParseObject.registerSubclass(Promo.class);
 		ParseUser currentUser = ParseUser.getCurrentUser();
 		if (currentUser == null) {
 			Intent intent = new Intent(this, LoginActivity.class);
 			startActivity(intent);
 			finish();
 		}
-		mAdapter = new TaskAdapter(this, new ArrayList<Task>());
-		mTaskInput = (EditText) findViewById(R.id.task_input);
-		mListView = (ListView) findViewById(R.id.task_list);
+		mAdapter = new PromoAdapter(this, new ArrayList<Promo>());
+		mListView = (ListView) findViewById(R.id.listview);
 		mListView.setAdapter(mAdapter);
 		mListView.setOnItemClickListener(this);
-		mListView.setOnItemLongClickListener(this);
 		updateData();
 	}
 
@@ -177,76 +153,33 @@ public class MainActivity extends SherlockActivity implements
 	}
 
 	public void updateData() {
-		ParseQuery<Task> query = ParseQuery.getQuery(Task.class);
-		query.whereEqualTo("user", ParseUser.getCurrentUser());
+		ParseQuery<Promo> query = ParseQuery.getQuery(Promo.class);
 		query.setCachePolicy(CachePolicy.CACHE_THEN_NETWORK);
 		query.orderByDescending("createdAt");
-		query.findInBackground(new FindCallback<Task>() {
+		query.findInBackground(new FindCallback<Promo>() {
 			@Override
-			public void done(List<Task> tasks, ParseException error) {
-				if (tasks != null) {
+			public void done(List<Promo> promo, ParseException error) {
+				if (promo != null) {
 					mAdapter.clear();
-					for (int i = 0; i < tasks.size(); i++) {
-						mAdapter.add(tasks.get(i));
+					for (int i = 0; i < promo.size(); i++) {
+						mAdapter.add(promo.get(i));
 					}
 				}
 			}
 		});
 	}
 
-	public void createTask(View v) {
-		if (mTaskInput.getText().length() > 0) {
-			Task t = new Task();
-			t.setACL(new ParseACL(ParseUser.getCurrentUser()));
-			t.setUser(ParseUser.getCurrentUser());
-			t.setDescription(mTaskInput.getText().toString());
-			//t.setCategory(mCategorySpinner.getSelectedItem().toString());
-			t.setCompleted(false);
-			t.saveEventually();
-			mAdapter.insert(t, 0);
-			mTaskInput.setText("");
-		}
-	}
 
 	@Override
 	public void onItemClick(AdapterView<?> parent, View view, int position,
 			long id) {
-		Task task = mAdapter.getItem(position);
-		TextView taskDescription = (TextView) view
-				.findViewById(R.id.task_description);
-
-		task.setCompleted(!task.isCompleted());
-
-		if (task.isCompleted()) {
-			taskDescription.setPaintFlags(taskDescription.getPaintFlags()
-					| Paint.STRIKE_THRU_TEXT_FLAG);
-		} else {
-			taskDescription.setPaintFlags(taskDescription.getPaintFlags()
-					& (~Paint.STRIKE_THRU_TEXT_FLAG));
-		}
-
-		task.saveEventually();
+		Promo promo = mAdapter.getItem(position);
+		TextView promoURL = (TextView) view.findViewById(R.id.promo_url);
+		Log.i("URL:",promoURL.getText().toString());
+		Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(promoURL.getText().toString()));
+		startActivity(browserIntent);
 	}
 
-	public boolean onItemLongClick(AdapterView<?> parent, View view, int pos,
-			long id) {
-		Task task = mAdapter.getItem(pos);
-		task.setCompleted(!task.isCompleted());
-		if (task.isCompleted()) {
-			Toast.makeText(getApplicationContext(),
-					"Not CheckedIt yet. Click to CheckIt!", Toast.LENGTH_LONG)
-					.show();
-			return false;
-		} else {
-			task.getObjectId();
-			Log.i("getObjectId :", task.getObjectId());
-			task.deleteInBackground();
-			mAdapter.remove(task);
-			mAdapter.notifyDataSetChanged();
-			return true;
-		}
-
-	}
 
 	/**
 	 * Responding to menu items
@@ -255,7 +188,7 @@ public class MainActivity extends SherlockActivity implements
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// Inflate the menu; this adds items to the action bar if it is present.
 		MenuInflater inflater = getSupportMenuInflater();
-		inflater.inflate(R.menu.mainmenu, menu);
+		inflater.inflate(R.menu.promomenu, menu);
 		// return true;
 		final MenuItem refresh = (MenuItem) menu.findItem(R.id.action_refresh);
 		refresh.setOnMenuItemClickListener(new OnMenuItemClickListener() {
@@ -273,24 +206,6 @@ public class MainActivity extends SherlockActivity implements
 		return super.onCreateOptionsMenu(menu);
 	}
 
-	@Override
-	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-		super.onActivityResult(requestCode, resultCode, data);
-
-		switch (requestCode) {
-		case RESULT_SPEECH: {
-			if (resultCode == RESULT_OK && null != data) {
-
-				ArrayList<String> text = data
-						.getStringArrayListExtra(RecognizerIntent.EXTRA_RESULTS);
-
-				mTaskInput.setText(text.get(0));
-			}
-			break;
-		}
-
-		}
-	}
 
 	/**
 	 * When an item from a menu is selected
@@ -299,30 +214,16 @@ public class MainActivity extends SherlockActivity implements
 	public boolean onOptionsItemSelected(MenuItem item) {
 		ActionBar menubar = getSupportActionBar();
 		switch (item.getItemId()) {
-		case R.id.action_speech:
-
-			Intent speechintent = new Intent(
-					RecognizerIntent.ACTION_RECOGNIZE_SPEECH);
-
-			speechintent.putExtra(RecognizerIntent.EXTRA_LANGUAGE_MODEL,
-					"en-US");
-			try {
-				startActivityForResult(speechintent, RESULT_SPEECH);
-				mTaskInput.setText("");
-			} catch (ActivityNotFoundException a) {
-				Toast t = Toast.makeText(getApplicationContext(),
-						"Your device does not support this feature.",
-						Toast.LENGTH_SHORT);
-				t.show();
-			}
-
-			return true;
 		case R.id.action_refresh:
 			// switch to a progress animation
 			item.setActionView(R.layout.indeterminate_progress_action);
 			updateData();
 			return true;
 		case R.id.action_settings:
+			/*
+			 * Toast.makeText(this, "Settings", Toast.LENGTH_SHORT).show(); Was
+			 * using this for debugging
+			 */
 			break;
 		case R.id.action_logout:
 			ParseUser.logOut();
@@ -332,9 +233,6 @@ public class MainActivity extends SherlockActivity implements
 			return true;
 		case R.id.action_help:
 			showOverLay();
-			return true;
-		case R.id.action_devinfo:
-			infoBox();
 			return true;
 		case R.id.action_share_app:
 			try
@@ -350,11 +248,9 @@ public class MainActivity extends SherlockActivity implements
 			{ //e.toString();
 			}   
 			return true;
-		case R.id.action_promo:
-			Intent i = new Intent(getApplicationContext(), PromoActivity.class);
-			i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-            startActivity(i);
-			return true;
+		case R.id.action_devinfo:
+			infoBox();
+			return true;	
 		default:
 			break;
 		}

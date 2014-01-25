@@ -17,6 +17,8 @@ You can use this app for free on daily basis. It is an advanced checklist androi
 
 <a href="https://play.google.com/store/apps/details?id=com.pytacular.checkitcloudchecklist"><img src="http://bhavyanshu.me/assets/imags/google_play_store_icon.png" alt="Play Store" description="Get it from play store" /></a>
 
+<a class="tryitImg" href="http://www.amazon.com/gp/mas/dl/android?p=com.pytacular.checkitcloudchecklist"><img src="http://bhavyanshu.me/assets/imags/amazon-apps-store-us-black.png" alt="Amazon App Store" description="Get it from Amazon App Store" /></a>
+
 ##Requirements
 
 * This will work on android 2.2 and above. Requires Internet Acess.

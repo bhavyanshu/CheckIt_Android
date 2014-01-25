@@ -15,12 +15,6 @@
 -->
 <menu xmlns:android="http://schemas.android.com/apk/res/android" >
 
-    <!-- Speech -->
-    <item
-        android:id="@+id/action_speech"
-        android:icon="@drawable/ic_speech"
-        android:showAsAction="ifRoom"
-        android:title="@string/action_speech"/>
     <!-- Refresh -->
     <item
         android:id="@+id/action_refresh"
@@ -48,12 +42,7 @@
                 android:orderInCategory="80"
                 android:title="@string/action_devinfo">
             </item>
-            <item
-                android:id="@+id/action_promo"
-                android:orderInCategory="70"
-                android:title="@string/coupon_button">
-            </item>
-            <item
+			<item
                 android:id="@+id/action_share_app"
                 android:orderInCategory="60"
                 android:title="@string/share_app">

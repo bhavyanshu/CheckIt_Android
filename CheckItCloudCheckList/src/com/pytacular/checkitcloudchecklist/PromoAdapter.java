@@ -27,40 +27,31 @@ import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 import android.widget.TextView;
 
-public class TaskAdapter extends ArrayAdapter<Task> {
+public class PromoAdapter extends ArrayAdapter<Promo> {
 	private Context mContext;
-	private List<Task> mTasks;
+	private List<Promo> mPromos;
 	
-	public TaskAdapter(Context context, List<Task> objects) {
-		super(context, R.layout.task_row_item, objects);
+	public PromoAdapter(Context context, List<Promo> objects) {
+		super(context, R.layout.promo_row_item, objects);
 		this.mContext = context;
-		this.mTasks = objects;
+		this.mPromos = objects;
 	}
 
 	public View getView(int position, View convertView, ViewGroup parent){
 		if(convertView == null){
 			LayoutInflater mLayoutInflater = LayoutInflater.from(mContext);
-			convertView = mLayoutInflater.inflate(R.layout.task_row_item, null);
+			convertView = mLayoutInflater.inflate(R.layout.promo_row_item, null);
 		}
-		
-		Task task = mTasks.get(position);
-		
-		TextView descriptionView = (TextView) convertView.findViewById(R.id.task_description);
+		Promo promo = mPromos.get(position);
+		TextView descriptionView = (TextView) convertView.findViewById(R.id.promo_title);
+		TextView urlView = (TextView) convertView.findViewById(R.id.promo_url);
 		// Loading font from assets
 		Typeface tfIron=Typeface.createFromAsset(getContext().getAssets(), "fonts/comicsans.ttf");
 		// applying to the view
 		descriptionView.setTypeface(tfIron);
-		descriptionView.setText(task.getDescription());
-		/* Category system to be implemented
-		 * if(task.getCategory().equalsIgnoreCase("Personal")){
-		descriptionView.setText(task.getDescription());
-		}*/
-		if(task.isCompleted()){
-			descriptionView.setPaintFlags(descriptionView.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
-		}else{
-			descriptionView.setPaintFlags(descriptionView.getPaintFlags() & (~Paint.STRIKE_THRU_TEXT_FLAG));
-		}	
+		urlView.setTypeface(tfIron);
+		descriptionView.setText(promo.getDescription());
+		urlView.setText(promo.getURL());
 		return convertView;
 	}
-
 }
